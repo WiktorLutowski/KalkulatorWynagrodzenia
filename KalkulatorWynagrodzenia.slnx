@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="GUI/GUI.csproj" />
+  <Project Path="Konsola.Testy/Konsola.Testy.csproj" />
+  <Project Path="Konsola/Konsola.csproj" />
+</Solution>

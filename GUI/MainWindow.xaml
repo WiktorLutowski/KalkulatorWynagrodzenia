@@ -1,0 +1,88 @@
+﻿<Window x:Class="GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d"
+        Title="Kalkulator i Rejestr Wynagrodzeń" Height="400" Width="630"
+        Background="#F0F6FD">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.ColumnSpan="2"
+                   TextAlignment="Center"
+                   Foreground="#CCCCCC"
+                   Background="#424A59"
+                   Padding="4">
+            Kalkulator Wynagrodzeń - Autor: 00000000000
+        </TextBlock>
+
+        <GroupBox Grid.Row="1" Header="Dane Wejściowe" Margin="5" Background="#E8EAF1" BorderBrush="Gray">
+            <StackPanel>
+                <GroupBox Grid.Row="1" Header="Wynagrodznenie brutto w PLN" Margin="5" BorderBrush="Gray">
+                    <TextBox Name="bruttoTextBox" Margin="5"></TextBox>
+                </GroupBox>
+
+                <GroupBox Grid.Row="1" Header="Rodzaj umowy" Margin="5" BorderBrush="Gray">
+                    <StackPanel>
+                        <RadioButton GroupName="umowa" Margin="3" Name="umowaOPraceRadio" IsChecked="True">Umowa o pracę</RadioButton>
+                        <RadioButton GroupName="umowa" Margin="3" Name="umowaZlecenieRadio">Umowa zlecenie</RadioButton>
+                    </StackPanel>
+                </GroupBox>
+
+                <CheckBox Name="ulgaCheckBox" Content="Ulga dla młodych &lt; 26" Margin="10"/>
+
+                <Button Background="#246DBF" Foreground="White" Margin="10 30 10 10" Padding="20" 
+                        FontSize="20" Click="Button_Click">OBLICZ I ZAPISZ</Button>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Row="1" Grid.Column="1" Header="Wyniki i historia" Margin="5" Background="#E8EAF1" BorderBrush="Gray">
+            <StackPanel>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0 15">
+                    <TextBlock Foreground="#106D20" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center">Wynagrodzenie netto:</TextBlock>
+                    <TextBlock Foreground="#106D20" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" Name="nettoTextBlock"></TextBlock>
+                </StackPanel>
+
+                <GroupBox Header="Szczegóły Składek i Podatków" Margin="5" BorderBrush="Gray">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="10, 5, 0 , 0">
+                            <TextBlock>Skałdki ZUS (społeczne):</TextBlock>
+                            <TextBlock FontWeight="Bold" Name="zusTextBlock"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="10, 2, 0 , 0">
+                            <TextBlock>Skałdki zdrowotna:</TextBlock>
+                            <TextBlock FontWeight="Bold" Name="skladkaZdrowotnaTextBlock"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="10, 2, 0 , 5">
+                            <TextBlock>Zaliczka na podatek PIT:</TextBlock>
+                            <TextBlock FontWeight="Bold" Name="pitTextBlock"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+
+
+                <GroupBox Header="Rejestr Wynagrodzeń" Margin="5" BorderBrush="Gray">
+                    <DataGrid Margin="5" Name="rejestrDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Data" Width="3*" Binding="{Binding Data}"/>
+                            <DataGridTextColumn Header="Kowa brutto" Width="3*" Binding="{Binding Brutto}"/>
+                            <DataGridTextColumn Header="Umowa" Width="2*" Binding="{Binding Umowa}"/>
+                            <DataGridTextColumn Header="Netto" Width="2*" Binding="{Binding Netto}"/>
+                            <DataGridTextColumn Header="Ulga" Width="2*" Binding="{Binding Ulga}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>
